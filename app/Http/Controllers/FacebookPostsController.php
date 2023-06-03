@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class FacebookPostsController extends Controller
 {
+//    cnlferf
     private string $base_url = 'https://graph.facebook.com/v16.0/';
 
     private string $catalog_id = '996327475108270';
