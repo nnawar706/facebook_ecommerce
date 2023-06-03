@@ -5,6 +5,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\YearController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,9 @@ Route::delete('facebook/page/products/{product_id}', [FacebookPostsController::c
 Route::get('countries', [CountryController::class, 'index']);
 
 Route::get('cities', [CityController::class, 'index']);
+
+Route::get('year', [YearController::class, 'index']);
+Route::post('year', [YearController::class, 'create']);
 
 Route::get('department', [DepartmentController::class, 'index']);
 Route::post('department', [DepartmentController::class, 'create']);
