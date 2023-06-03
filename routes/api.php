@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +37,22 @@ Route::get('facebook/page/products/{product_id}', [FacebookPostsController::clas
 Route::post('facebook/page/products', [FacebookPostsController::class, 'createProduct']);
 Route::put('facebook/page/products/{product_id}', [FacebookPostsController::class, 'updateProduct']);
 Route::delete('facebook/page/products/{product_id}', [FacebookPostsController::class, 'deleteProduct']);
+
+
+
+Route::get('countries', [CountryController::class, 'index']);
+
+Route::get('cities', [CityController::class, 'index']);
+
+Route::get('department', [DepartmentController::class, 'index']);
+Route::post('department', [DepartmentController::class, 'create']);
+Route::put('department/{id}', [DepartmentController::class, 'update']);
+Route::delete('department/{id}', [DepartmentController::class, 'delete']);
+
+Route::get('employee', [EmployeeController::class, 'index']);
+Route::post('employee', [EmployeeController::class, 'create']);
+Route::post('employee/{id}', [EmployeeController::class, 'update']);
+Route::delete('employee/{id}', [EmployeeController::class, 'delete']);
+
+Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
+Route::put('attendance/check-out/{id}', [AttendanceController::class, 'checkOut']);
