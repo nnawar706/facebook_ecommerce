@@ -16,7 +16,7 @@ class EmployeeController extends Controller
         {
             $this->employeeByDept($dept_id);
         }
-        $data = Employee::paginate(10);
+        $data = Employee::with('city.country')->paginate(10);
 
         return response()->json([
             'status' => true,
@@ -140,7 +140,8 @@ class EmployeeController extends Controller
 
     private function employeeByDept($dept_id)
     {
-        $data = Employee::where('department_id',$dept_id)->paginate(10);
+        $data = Employee::with('city.country')
+            ->where('department_id',$dept_id)->paginate(10);
 
         return response()->json([
             'status' => true,
