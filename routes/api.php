@@ -5,6 +5,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeSalaryController;
+use App\Http\Controllers\MonthController;
 use App\Http\Controllers\YearController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +50,8 @@ Route::get('cities', [CityController::class, 'index']);
 Route::get('year', [YearController::class, 'index']);
 Route::post('year', [YearController::class, 'create']);
 
+Route::get('month', [MonthController::class, 'index']);
+
 Route::get('department', [DepartmentController::class, 'index']);
 Route::post('department', [DepartmentController::class, 'create']);
 Route::put('department/{id}', [DepartmentController::class, 'update']);
@@ -61,4 +65,4 @@ Route::delete('employee/{id}', [EmployeeController::class, 'delete']);
 Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
 Route::put('attendance/check-out/{id}', [AttendanceController::class, 'checkOut']);
 
-Route::post('employee/salary', );
+Route::post('employee/salary', [EmployeeSalaryController::class, 'create']);

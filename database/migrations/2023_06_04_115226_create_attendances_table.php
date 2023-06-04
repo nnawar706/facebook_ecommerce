@@ -17,6 +17,7 @@ return new class extends Migration
             $table->timestamp('date');
             $table->timestamp('check_in');
             $table->timestamp('check_out')->nullable();
+            $table->tinyInteger('status')->comment('1:present,2:late');
             $table->timestamps();
         });
     }
