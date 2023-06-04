@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -121,13 +122,15 @@ class EmployeeController extends Controller
     {
         $emp = Employee::findOrFail($id);
 
-        if($status = $emp->delete())
+        try
         {
+            $emp->delete();
+
             return response()->json([
                 'status' => true,
             ]);
         }
-        else
+        catch (QueryException $ex)
         {
             return response()->json([
                 'status' => false,
