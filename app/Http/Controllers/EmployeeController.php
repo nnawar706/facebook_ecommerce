@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterRequest;
 use App\Models\Employee;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -10,16 +11,15 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(FilterRequest $request)
     {
-        if($dept_id = request()->input('department_id'))
-        {
-            $data = $this->employeeByDept($dept_id);
-        }
-        else
-        {
-            $data = Employee::with('city.country')->paginate(10);
-        }
+        $data = Employee::with('city.country')
+            ->when($request->department_id != null, function ($q) use($request) {
+                $q->where('department_id',$request->department_id);
+            })
+            ->orderByDesc('department_id')
+            ->paginate(10);
+
         return response()->json([
             'status' => true,
             'data' => $data
@@ -138,11 +138,5 @@ class EmployeeController extends Controller
                 'status' => false,
             ],500);
         }
-    }
-
-    public function employeeByDept($dept_id)
-    {
-        return Employee::with('city.country')
-            ->where('department_id',$dept_id)->paginate(10);
     }
 }

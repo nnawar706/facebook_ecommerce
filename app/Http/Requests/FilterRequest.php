@@ -26,7 +26,8 @@ class FilterRequest extends FormRequest
     {
         return [
             'year_id' => 'sometimes|exists:years,id',
-            'month_id' => 'sometimes|exists:months,id'
+            'month_id' => 'sometimes|exists:months,id',
+            'department_id' => 'sometimes|exists:departments,id'
         ];
     }
 
