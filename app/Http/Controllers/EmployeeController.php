@@ -14,10 +14,12 @@ class EmployeeController extends Controller
     {
         if($dept_id = request()->input('department_id'))
         {
-            $this->employeeByDept($dept_id);
+            $data = $this->employeeByDept($dept_id);
         }
-        $data = Employee::with('city.country')->paginate(10);
-
+        else
+        {
+            $data = Employee::with('city.country')->paginate(10);
+        }
         return response()->json([
             'status' => true,
             'data' => $data
@@ -138,14 +140,9 @@ class EmployeeController extends Controller
         }
     }
 
-    private function employeeByDept($dept_id)
+    public function employeeByDept($dept_id)
     {
-        $data = Employee::with('city.country')
+        return Employee::with('city.country')
             ->where('department_id',$dept_id)->paginate(10);
-
-        return response()->json([
-            'status' => true,
-            'data' => $data
-        ]);
     }
 }

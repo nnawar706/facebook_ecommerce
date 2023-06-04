@@ -66,5 +66,5 @@ Route::get('attendance', [AttendanceController::class, 'index']);
 Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
 Route::get('attendance/check-out/{id}', [AttendanceController::class, 'checkOut']);
 
-Route::get('employee/salary', [EmployeeSalaryController::class, 'index']);
-Route::post('employee/salary', [EmployeeSalaryController::class, 'create']);
+Route::get('employee-salary', [EmployeeSalaryController::class, 'index']);
+Route::post('employee-salary', [EmployeeSalaryController::class, 'create']);
