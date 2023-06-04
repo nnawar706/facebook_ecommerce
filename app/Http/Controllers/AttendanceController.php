@@ -9,6 +9,19 @@ use Illuminate\Validation\Rule;
 
 class AttendanceController extends Controller
 {
+    public function index()
+    {
+        $data = Attendance::with(['employee' => function($q) {
+            $q->select('id','name');
+        }])
+            ->orderBy('date','desc')->paginate(10);
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
+        ]);
+    }
+
     public function checkIn(Request $request)
     {
         $validate = Validator::make($request->all(), [

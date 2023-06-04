@@ -62,6 +62,7 @@ Route::post('employee', [EmployeeController::class, 'create']);
 Route::post('employee/{id}', [EmployeeController::class, 'update']);
 Route::delete('employee/{id}', [EmployeeController::class, 'delete']);
 
+Route::get('attendance', [AttendanceController::class, 'index']);
 Route::post('attendance/check-in', [AttendanceController::class, 'checkIn']);
 Route::get('attendance/check-out/{id}', [AttendanceController::class, 'checkOut']);
 
